@@ -4,6 +4,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '../static/iconfont.wxss';
 
 </style>

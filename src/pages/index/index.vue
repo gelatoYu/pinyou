@@ -32,6 +32,16 @@
         </div>
       </div>
     </div>
+    <!-- 底部 -->
+    <div class="bottom-line">
+      <i class="iconfont icon-xiao"></i>
+      <p>已经到底啦</p>
+    </div>
+    <!-- 回到顶部 -->
+    <div class="back-top" v-show="isShow" @click="backTop">
+      <i class="iconfont icon-jiantoushang"></i>
+      <p>顶部</p>
+    </div>
   </div>
 </template>
 
@@ -43,7 +53,8 @@ export default {
     return {
       swiperList: [],
       categoryList: [],
-      floorList: []
+      floorList: [],
+      isShow: false
     };
   },
   async created() {
@@ -68,21 +79,35 @@ export default {
     // console.log(floorRes);
     // this.floorList = floorRes.data.message;
 
-    let p1 =hxios.get({
+    let p1 = hxios.get({
       url: "api/public/v1/home/swiperdata"
     });
-    let p2 =hxios.get({
+    let p2 = hxios.get({
       url: "api/public/v1/home/catitems"
     });
-    let p3 =hxios.get({
+    let p3 = hxios.get({
       url: "api/public/v1/home/floordata"
     });
-    let res =await Promise.all([p1,p2,p3]);
+    let res = await Promise.all([p1, p2, p3]);
     console.log(res);
-    
+
     this.swiperList = res[0].data.message;
     this.categoryList = res[1].data.message;
     this.floorList = res[2].data.message;
+  },
+  onPageScroll(event) {
+    if (event.scrollTop > 170) {
+      this.isShow = true;
+    } else {
+      this.isShow = false;
+    }
+  },
+  methods: {
+    backTop() {
+      wx.pageScrollTo({
+        scrollTop: 0
+      });
+    }
   }
 };
 </script>
@@ -196,6 +221,25 @@ $pinyou: #ff2d4a;
         }
       }
     }
+  }
+  .bottom-line {
+    display: flex;
+    justify-content: center;
+    font-size: 24rpx;
+    color: #999;
+    padding: 20rpx 0;
+  }
+  .back-top {
+    width: 90rpx;
+    height: 90rpx;
+    background-color: hotpink;
+    position: fixed;
+    right: 15rpx;
+    bottom: 15rpx;
+    border-radius: 50%;
+    z-index: 999;
+    text-align: center;
+    font-size: 26rpx;
   }
 }
 </style>
