@@ -9,7 +9,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ff2d4a",
     "navigationBarTitleText": "优购",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "selectedColor": "#ff2d4a",

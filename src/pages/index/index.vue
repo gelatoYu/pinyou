@@ -232,7 +232,7 @@ $pinyou: #ff2d4a;
   .back-top {
     width: 90rpx;
     height: 90rpx;
-    background-color: hotpink;
+    background-color: white;
     position: fixed;
     right: 15rpx;
     bottom: 15rpx;
