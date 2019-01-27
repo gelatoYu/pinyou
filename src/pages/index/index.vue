@@ -47,26 +47,42 @@ export default {
     };
   },
   async created() {
-    //轮播图数据获取
-    let res = await hxios.get({
+    // //轮播图数据获取
+    // let res = await hxios.get({
+    //   url: "api/public/v1/home/swiperdata"
+    // });
+    // // console.log(res);
+    // this.swiperList = res.data.message;
+
+    // //分类按钮数据获取
+    // let categoryRes = await hxios.get({
+    //   url: "api/public/v1/home/catitems"
+    // });
+    // // console.log(categoryRes);
+    // this.categoryList = categoryRes.data.message;
+
+    // //楼层获取
+    // let floorRes = await hxios.get({
+    //   url: "api/public/v1/home/floordata"
+    // });
+    // console.log(floorRes);
+    // this.floorList = floorRes.data.message;
+
+    let p1 =hxios.get({
       url: "api/public/v1/home/swiperdata"
     });
-    // console.log(res);
-    this.swiperList = res.data.message;
-
-    //分类按钮数据获取
-    let categoryRes = await hxios.get({
+    let p2 =hxios.get({
       url: "api/public/v1/home/catitems"
     });
-    // console.log(categoryRes);
-    this.categoryList = categoryRes.data.message;
-
-    //楼层获取
-    let floorRes = await hxios.get({
+    let p3 =hxios.get({
       url: "api/public/v1/home/floordata"
     });
-    console.log(floorRes);
-    this.floorList = floorRes.data.message;
+    let res =await Promise.all([p1,p2,p3]);
+    console.log(res);
+    
+    this.swiperList = res[0].data.message;
+    this.categoryList = res[1].data.message;
+    this.floorList = res[2].data.message;
   }
 };
 </script>
